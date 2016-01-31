@@ -1,0 +1,22 @@
+{
+  "name": "my-server",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "lesspion <coquelet.c@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
