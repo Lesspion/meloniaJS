@@ -1,6 +1,5 @@
 var Hapi = require('hapi');
 var server = new Hapi.Server();
-var swig = require('swig');
 process.myEnv = require('./MyEnv');
 var templateEngine = require(process.myEnv.config_folder + '/templateEngine');
 var load = require(process.myEnv.tools_folder + '/loader');
