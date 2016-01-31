@@ -33,4 +33,9 @@ load.routeAction = function () {
     return routesAction;
 };
 
+load.loadSwigExtension = function (swig) {
+    // load filter && function for swig
+    return swig;
+};
+
 module.exports = load;
