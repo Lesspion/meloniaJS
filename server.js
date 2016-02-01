@@ -22,7 +22,13 @@ server.register(require('vision'), function (err) {
     var engine= {};
     engine.engines = {};
     engine.engines[templateEngine[templateEngine.main].fileType] = templateEngine[templateEngine.main].extending || templateEngine[templateEngine.main].instance;
-    engine.path = templateEngine[templateEngine.main].path || process.myEnv.views_folder
+    engine.path = templateEngine[templateEngine.main].path || process.myEnv.views_folder;
+    if (templateEngine[templateEngine.main].relativeTo) {
+        engine.relativeTo = templateEngine[templateEngine.main].relativeTo;
+    }
+    if (templateEngine[templateEngine.main].compileOptions) {
+        engine.compileOptions = templateEngine[templateEngine.main].compileOptions;
+    }
     
     server.views(engine);
 });
