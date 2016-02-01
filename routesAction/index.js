@@ -3,6 +3,9 @@ module.exports = {
         reply('Hello everybody');
     },
     'home': function (request, reply) {
-        reply('I\'m in home');
+        reply.view('index', {
+            title: 'hello my world',
+            mydate: new Date()
+        });
     }
 };
