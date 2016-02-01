@@ -33,8 +33,13 @@ load.routeAction = function () {
     return routesAction;
 };
 
-load.loadSwigExtension = function (swig) {
+load.loadSwigExtension = function () {
     // load filter && function for swig
+    var swig = require('swig');
+    var filterObject = require(process.myEnv.tools_folder + '/swigFilter');
+    for (var filterName in filterObject) {
+        swig.setFilter(filterName, filterObject[filterName]);
+    }
     return swig;
 };
 
