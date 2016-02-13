@@ -43,4 +43,23 @@ load.loadSwigExtension = function () {
     return swig;
 };
 
+load.assets = function (server) {
+    var assetsList = require(process.myEnv.config_folder + '/assetsList');
+    var allRoute = [];
+    for (var i in assetsList) {
+        var obj = {
+            'method': 'GET',
+            'path': '/' + i + '/{filename*}',
+            'handler': function (req, reply) {
+                console.log(assetsList[i]);
+                reply(require('fs').readFileSync(assetsList[i] + req.params.filename, 'utf-8'));
+            }
+        };
+        allRoute.push(obj);
+    }
+    for (var i = 0; i < allRoute.length; i++) {
+        server.route(allRoute[i]);
+    }
+};
+
 module.exports = load;
