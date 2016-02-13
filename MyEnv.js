@@ -8,5 +8,5 @@ module.exports = {
     "config_folder": __dirname + '/config',
     "tools_folder": __dirname + '/tools',
     'action_folder': __dirname + '/routesAction',
-    
+    'bower_folder': __dirname + '/bower_components',
 };
