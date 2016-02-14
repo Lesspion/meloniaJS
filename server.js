@@ -1,4 +1,5 @@
 var Hapi = require('hapi');
+var Inert = require("inert");
 var server = new Hapi.Server();
 process.myEnv = require('./MyEnv');
 var templateEngine = require(process.myEnv.config_folder + '/templateEngine');
@@ -11,6 +12,8 @@ server.connection({
 
 // Extending Swig
 
+// register static serving file
+server.register(Inert, function () {});
 
 // VIEWS - SWIG
 server.register(require('vision'), function (err) {
