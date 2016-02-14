@@ -10,10 +10,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.4.1",
+    "handlebars": "^4.0.5",
     "hapi": "^12.1.0",
     "hapi-assets": "^0.3.0",
     "inert": "^3.2.0",
+    "jade": "^1.11.0",
+    "nunjucks": "^2.3.0",
     "swig": "^1.4.2",
     "vision": "^4.0.1"
+  },
+  "devDependencies": {
+    "grunt-concurrent": "^2.1.0",
+    "grunt-contrib-connect": "^0.11.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-nodemon": "^0.4.1",
+    "grunt-reload": "^0.2.0"
   }
 }
