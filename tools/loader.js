@@ -50,9 +50,12 @@ load.assets = function (server) {
         var obj = {
             'method': 'GET',
             'path': '/' + i + '/{filename*}',
-            'handler': function (req, reply) {
-                console.log(assetsList[i]);
-                reply(require('fs').readFileSync(assetsList[i] + req.params.filename, 'utf-8'));
+            'handler': {
+                'directory': {
+                    'path': assetsList[i],
+                    'listing': false,
+                    'index': false
+                }
             }
         };
         allRoute.push(obj);
