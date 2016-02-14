@@ -1,6 +1,6 @@
 module.exports = {
-    "port": 8080,
-    "host": "0.0.0.0",
+    "port": process.env.PORT || 8080,
+    "host": process.env.IP || "0.0.0.0",
     "domain_name": 'lesspion.fr',
     "base_folder": __dirname,
     "views_folder": __dirname + '/views',
