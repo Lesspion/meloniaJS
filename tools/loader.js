@@ -6,6 +6,7 @@ load.route = function (server) {
     for (var i in routes) {
         var config = routes[i].config || {};
         var handler;
+        var routeObj = {};
         if (typeof routes[i].handler !== "function") {
             var tempHandler = routes[i].handler.split('.');
             var namespace = tempHandler[0];
@@ -14,12 +15,16 @@ load.route = function (server) {
         } else {
             handler = routes[i].handler;
         }
-        server.route({
-            method: routes[i].method,
-            path: i,
-            handler: handler,
-            config: config
-        });
+        routeObj.method = routes[i].method;
+        routeObj.path = i;
+        routeObj.handler = handler;
+        routeObj.config;
+        if (routes[i].vhost) {
+            routeObj.vhost = routes[i].vhost;
+            console.log(routeObj.vhost);
+        }
+        
+        server.route(routeObj);
     }
 };
 
