@@ -2,12 +2,14 @@ var Hapi = require('hapi');
 var Inert = require("inert");
 var server = new Hapi.Server();
 process.myEnv = require('./MyEnv');
-var templateEngine = require(process.myEnv.config_folder + '/templateEngine');
+var htmlEngine = process.myEnv['template-engine'];
+var templateEngine = require(process.myEnv.config_folder + '/template-engine/' + htmlEngine + '.js');
 var load = require(process.myEnv.tools_folder + '/loader');
+var Hoek = require('hoek');
 
 server.connection({ 
     host: process.myEnv.host || '0.0.0.0', 
-    port: process.env.PORT || process.myEnv.port || 8080
+    port: 80// process.env.PORT || process.myEnv.port || 8080
 });
 
 // Extending Swig
@@ -24,13 +26,13 @@ server.register(require('vision'), function (err) {
     
     var engine= {};
     engine.engines = {};
-    engine.engines[templateEngine[templateEngine.main].fileType] = templateEngine[templateEngine.main].extending || templateEngine[templateEngine.main].instance;
-    engine.path = templateEngine[templateEngine.main].path || process.myEnv.views_folder;
-    if (templateEngine[templateEngine.main].relativeTo) {
-        engine.relativeTo = templateEngine[templateEngine.main].relativeTo;
+    engine.engines[templateEngine.fileType] = templateEngine.extending || templateEngine.instance;
+    engine.path = templateEngine.path || process.myEnv.views_folder;
+    if (templateEngine.relativeTo) {
+        engine.relativeTo = templateEngine.relativeTo;
     }
-    if (templateEngine[templateEngine.main].compileOptions) {
-        engine.compileOptions = templateEngine[templateEngine.main].compileOptions;
+    if (templateEngine.compileOptions) {
+        engine.compileOptions = templateEngine.compileOptions;
     }
     
     server.views(engine);
