@@ -43,5 +43,5 @@ load.route(server);
 load.assets(server);
 
 server.start(function () {
-    console.log('Server running at:', server.info.uri);
+    console.log('Server running at : ', server.info.uri);
 });
