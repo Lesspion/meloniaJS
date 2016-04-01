@@ -21,6 +21,7 @@ meloniaJS uses a number of open source projects to work properly:
 * [node.js] - evented I/O for the backend
 * [Hapi] - fast node.js network app framework
 * [grunt] - the streaming build system
+* [Caminte] - ORM for nodejs, providing common interface to access most popular database formats.
 
 ### Installation
 
@@ -43,3 +44,4 @@ meloniaJS is open-sourced software licensed under the [MIT license](http://opens
    [express]: <http://expressjs.com>
    [grunt]: <http://gruntjs.com/>
    [Hapi]: <http://hapijs.com/>
+   [Caminte]: <http://www.camintejs.com/>
