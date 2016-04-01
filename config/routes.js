@@ -26,5 +26,9 @@ module.exports = {
     '/nunjucks': {
         'method': 'GET',
         'handler': 'index.nunjucks'
+    },
+    '/user/{username}': {
+        'method': 'GET',
+        'handler': 'user.index'
     }
 };
