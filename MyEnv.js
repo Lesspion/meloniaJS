@@ -1,7 +1,8 @@
 module.exports = {
     "port": process.env.PORT || 8080,
     "host": process.env.IP || "0.0.0.0",
-    "domain_name": 'lesspion.fr',
+    "domain_name": 'localhost',
+    "template-engine": "swig",
     "base_folder": __dirname,
     "views_folder": __dirname + '/views',
     "assets_folder": __dirname + "/assets",
