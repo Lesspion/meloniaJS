@@ -5,12 +5,19 @@ process.myEnv = require('./MyEnv');
 var htmlEngine = process.myEnv['template-engine'];
 var templateEngine = require(process.myEnv.config_folder + '/template-engine/' + htmlEngine + '.js');
 var load = require(process.myEnv.tools_folder + '/loader');
+process.helper = load.helper;
 var Hoek = require('hoek');
+var Caminte = require('caminte');
+var Schema = Caminte.Schema;
 
 server.connection({ 
     host: process.myEnv.host || '0.0.0.0', 
     port: 80// process.env.PORT || process.myEnv.port || 8080
 });
+
+var dbConfig = load.dbEngine();
+process.schema = new Schema(dbConfig.driver, dbConfig);
+load.dbSchema();
 
 // Extending Swig
 
