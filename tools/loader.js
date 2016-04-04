@@ -18,7 +18,7 @@ load.route = function (server) {
         routeObj.method = routes[i].method;
         routeObj.path = i;
         routeObj.handler = handler;
-        routeObj.config;
+        routeObj.config = config;
         if (routes[i].vhost) {
             routeObj.vhost = routes[i].vhost;
             console.log(routeObj.vhost);
@@ -69,5 +69,38 @@ load.assets = function (server) {
         server.route(allRoute[i]);
     }
 };
+
+load.dbEngine = function () {
+    var adapterName = process.myEnv['db-engine'];
+    var dbConfig = require(process.myEnv.config_folder + "/database-engine/" + adapterName + ".json");
+    return dbConfig;
+};
+
+load.schemaValidation = function (name, model) {
+    var fs = require('fs');
+    var model = process.schema.models[name];
+    name = name.charAt(0).toLowerCase() + name.slice(1);
+    if (fs.existsSync(process.myEnv.dbValidation + '/' + name + '-validation.js')) {
+        require(process.myEnv.dbValidation + '/' + name + '-validation.js')(model);
+    } else {
+        console.log("doesn't exist");
+        console.log('path : ', process.myEnv.dbValidation + '/' + name + '-validation.js');
+    }
+};
+
+load.dbSchema = function () {
+    var fs = require('fs');
+    var listInDir = fs.readdirSync(process.myEnv.dbSchema);
+    for (var i = 0; i < listInDir.length; i++) {
+        var name = listInDir[i].split('.')[0];
+        var model = require(process.myEnv.dbSchema + '/' + listInDir[i])(process.schema);
+        process.schema.define(name, model);
+        load.schemaValidation(name);
+    }
+};
+
+load.helper = function (helperName) {
+    return require(process.myEnv.helper + '/' + helperName);
+}
 
 module.exports = load;
