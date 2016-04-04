@@ -1,5 +1,7 @@
 module.exports = {
     'index': function (request, reply) {
+        var printMe = process.helper('printme');
+        printMe();
         reply('Hello everybody');
     },
     'home': function (request, reply) {
