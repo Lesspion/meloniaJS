@@ -1,3 +1,4 @@
+var Joi = require('joi');
 module.exports = {
     '/': {
         'method': 'GET',
@@ -29,6 +30,17 @@ module.exports = {
     },
     '/user/{username}': {
         'method': 'GET',
-        'handler': 'user.index'
+        'handler': 'user.index',
+        'config': {
+            'validate': {
+                'params': {
+                    'username': Joi.string().min(3).max(10)
+                }
+            }
+        }
+    },
+    '/adduser/{name}': {
+        'method': 'GET',
+        'handler': 'user.add'
     }
 };
